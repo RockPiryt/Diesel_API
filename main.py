@@ -1,6 +1,12 @@
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
+import requests
 
+
+dataset_id="all-vehicles-model"
+OPENDATA_VEHICLE_URL = f"https://public.opendatasoft.com/api/records/1.0/search/?dataset=all-vehicles-model&q=&sort=year&facet=make&facet=model&facet=fueltype&facet=trany&facet=vclass&facet=year&refine.make=Volkswagen&refine.model=Golf"
+
+##-----------------------------------Create app
 app = Flask(__name__)
 
 ##-----------------------------------Create DB
@@ -43,11 +49,37 @@ db.create_all()
 
 
 ##-----------------------------------URLS
+# @app.route("/")
+# def home():
+#     '''Show all cars in database'''
+#     all_cars = Car.query.all()
+#     return render_template("index.html", html_all_cars=all_cars)
+
 @app.route("/")
 def home():
     '''Show all cars in database'''
-    all_cars = Car.query.all()
-    return render_template("index.html", html_all_cars=all_cars)
+
+    #Make API request - 10 rows
+    response = requests.get(OPENDATA_VEHICLE_URL)
+    all_cars = response.json()["records"]
+
+    #Get specific information
+    for one_car in all_cars:
+        new_car=Car(
+            make=one_car["fields"]["make"],
+            model=one_car["fields"]["model"],
+            year=one_car["fields"]["year"],
+            engine=one_car["fields"]["displ"],
+            fuel=one_car["fields"]["fueltype1"],
+            transmission=one_car["fields"]["trany"],
+            size=one_car["fields"]["vclass"],
+            consumption=one_car["fields"]["barrels08"],
+        )
+        db.session.add(new_car)
+        db.session.commit()
+
+    python_all_cars = Car.query.all()
+    return render_template("index.html", html_all_cars=python_all_cars)
 
 if __name__ == "__main__":
     app.run(debug=True, host="localhost", port="5000")
