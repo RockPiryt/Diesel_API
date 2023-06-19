@@ -10,7 +10,8 @@ from flask_bootstrap import Bootstrap5
 
 
 #dataset_id="all-vehicles-model"
-OPENDATA_VEHICLE_URL = f"https://public.opendatasoft.com/api/records/1.0/search/?dataset=all-vehicles-model&q=&sort=year&facet=make&facet=model&facet=fueltype&facet=trany&facet=vclass&facet=year&refine.make=Volkswagen&refine.model=Golf"
+OPENDATA_VEHICLE_URL = f"https://public.opendatasoft.com//api/records/1.0/search/?dataset=all-vehicles-model&q=&rows=20&sort=-barrels08&facet=make&facet=model&facet=cylinders&facet=drive&facet=eng_dscr&facet=fueltype&facet=fueltype1&facet=mpgdata&facet=phevblended&facet=trany&facet=vclass&facet=year&refine.fueltype1=Diesel&refine.year=2018"
+
 
 ##-----------------------------------Create app
 app = Flask(__name__)
@@ -77,7 +78,7 @@ def home():
 
     #Make API request - 10 rows
     response = requests.get(OPENDATA_VEHICLE_URL)
-    all_cars = response.json()["records"]
+    all_cars = response.json()["records"][::2]
 
     #Get specific information
     for one_car in all_cars:
