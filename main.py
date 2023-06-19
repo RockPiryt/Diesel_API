@@ -41,8 +41,27 @@ class Car(db.Model):
         return f'<Vehicle {self.model}>'
 
 db.create_all()
+#--------------------------------Add values to database
+#Make API request - 20 rows - iteration by 2 (to eliminate duplicate model with different transmission)
+response = requests.get(OPENDATA_VEHICLE_URL)
+all_cars = response.json()["records"][::2]
 
-# # First information to db
+#Get specific information
+for one_car in all_cars:
+    new_car=Car(
+        make=one_car["fields"]["make"],
+        model=one_car["fields"]["model"],
+        year=one_car["fields"]["year"],
+        engine=one_car["fields"]["displ"],
+        fuel=one_car["fields"]["fueltype1"],
+        transmission=one_car["fields"]["trany"],
+        size=one_car["fields"]["vclass"],
+        consumption=one_car["fields"]["barrels08"],
+    )
+    db.session.add(new_car)
+    db.session.commit()
+
+# # -----------------------------First information to db to check db
 # new_car = Car(
 #     make = "Volkswagen",
 #     model = "Golf",
@@ -76,27 +95,10 @@ class EditForm(FlaskForm):
 def home():
     '''Show all cars in database'''
 
-    #Make API request - 10 rows
-    response = requests.get(OPENDATA_VEHICLE_URL)
-    all_cars = response.json()["records"][::2]
-
-    #Get specific information
-    for one_car in all_cars:
-        new_car=Car(
-            make=one_car["fields"]["make"],
-            model=one_car["fields"]["model"],
-            year=one_car["fields"]["year"],
-            engine=one_car["fields"]["displ"],
-            fuel=one_car["fields"]["fueltype1"],
-            transmission=one_car["fields"]["trany"],
-            size=one_car["fields"]["vclass"],
-            consumption=one_car["fields"]["barrels08"],
-        )
-        db.session.add(new_car)
-        db.session.commit()
-
     python_all_cars = Car.query.all()
-    return render_template("index.html", html_all_cars=python_all_cars)
+    #Slice to show 10 cars
+    list_all_cars=python_all_cars[0:9]
+    return render_template("index.html", html_all_cars=list_all_cars)
 
 @app.route("/add-img", methods=["GET", "POST"])
 def add_img():
