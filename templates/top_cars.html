@@ -1,0 +1,155 @@
+<section id="top_cars" class="top_cars">
+    <div class="section-title">
+      <span>TOP CARS</span>
+      <h2>TOP CARS</h2>
+      <p>Cars with lowest petroleum consumption</p>
+    </div>
+
+    <div class="container d-flex justify-content-center mt-50 mb-50">
+      <div class="row">
+        <div class="col-md-12">
+            {% for car in html_all_cars %}
+              <div class="card card-body mt-3">
+                          <div class="media align-items-center align-items-lg-start text-center text-lg-left flex-column flex-lg-row">
+                              <div class="mr-2 mb-3 mb-lg-0">
+                                      <img src="https://images.unsplash.com/photo-1619510827584-60fa771c35e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=437&q=80" width="150" height="150" alt="">
+                              </div>
+                              <div class="media-body">
+                                  <h6 class="media-title font-weight-semibold">
+                                      <a href="#" data-abc="true">{{ car.make }} [{{car.model}}]</a>
+                                  </h6>
+                                  <ul class="list-inline list-inline-dotted mb-3 mb-lg-2">
+                                      <li class="list-inline-item"><a href="#" class="text-muted" data-abc="true">{{car.size}}</a></li>
+                                      <li class="list-inline-item"><a href="#" class="text-muted" data-abc="true"></a></li>
+                                  </ul>
+                                  <p class="mb-3">Production year: {{ car.year }} | Engine:{{ car.engine }} | Transmission: {{ car.transmission }}</p>
+                                  <ul class="list-inline list-inline-dotted mb-0">
+                                      <li class="list-inline-item">Annual Petroleum Consumption <a href="#" data-abc="true">per 100km</a> </li>
+                                      
+                                  </ul>
+                              </div>
+                              <div class="mt-3 mt-lg-0 ml-lg-3 text-center">
+                                  <h3 class="mb-0 font-weight-semibold">{{car.consumption}} L</h3>
+                                  <div>
+                                      <i class="fa fa-star"></i>
+                                      <i class="fa fa-star"></i>
+                                      <i class="fa fa-star"></i>
+                                      <i class="fa fa-star"></i>
+                                  </div>
+                                  <div class="text-muted">Fuel type: {{car.fuel}}</div>
+                                  <button type="button" class="btn btn-warning mt-4 text-white"><i class="icon-cart-add mr-2"></i> More info</button>
+                              </div>
+                          </div>
+                      </div>
+                    {% endfor %}
+
+
+                  <div class="card card-body mt-3">
+                          <div class="media align-items-center align-items-lg-start text-center text-lg-left flex-column flex-lg-row">
+                              <div class="mr-2 mb-3 mb-lg-0">
+                                      <img src="https://i.imgur.com/Aj0L4Wa.jpg" width="150" height="150" alt="">
+                              </div>
+                              <div class="media-body">
+                                  <h6 class="media-title font-weight-semibold">
+                                      <a href="#" data-abc="true">Apple iPhone XS Max (Gold, 64 GB)</a>
+                                  </h6>
+                                  <ul class="list-inline list-inline-dotted mb-3 mb-lg-2">
+                                      <li class="list-inline-item"><a href="#" class="text-muted" data-abc="true">Phones</a></li>
+                                      <li class="list-inline-item"><a href="#" class="text-muted" data-abc="true">Mobiles</a></li>
+                                  </ul>
+                                  <p class="mb-3">256 GB ROM | 15.49 cm (6.1 inch) Display 12MP Rear Camera | 15MP Front Camera A12 Bionic Chip Processor | Gorilla Glass with high quality display </p>
+                                  <ul class="list-inline list-inline-dotted mb-0">
+                                      <li class="list-inline-item">All items from <a href="#" data-abc="true">Mobile junction</a></li>
+                                      <li class="list-inline-item">Add to <a href="#" data-abc="true">wishlist</a></li>
+                                  </ul>
+                              </div>
+                              <div class="mt-3 mt-lg-0 ml-lg-3 text-center">
+                                  <h3 class="mb-0 font-weight-semibold">$612.99</h3>
+                                  <div>
+                                      <i class="fa fa-star"></i>
+                                      <i class="fa fa-star"></i>
+                                      <i class="fa fa-star"></i>
+                                      <i class="fa fa-star"></i>
+                                      <i class="fa fa-star"></i>
+                                  </div>
+                                  <div class="text-muted">2349 reviews</div>
+                                  <button type="button" class="btn btn-warning mt-4 text-white"><i class="icon-cart-add mr-2"></i> Add to cart</button>
+                              </div>
+                          </div>
+                      </div>
+
+
+                      <div class="card card-body mt-3">
+                          <div class="media align-items-center align-items-lg-start text-center text-lg-left flex-column flex-lg-row">
+                              <div class="mr-2 mb-3 mb-lg-0">
+                                      <img src="https://i.imgur.com/5Aqgz7o.jpg" width="150" height="150" alt="">
+                              </div>
+                              <div class="media-body">
+                                  <h6 class="media-title font-weight-semibold">
+                                      <a href="#" data-abc="true">Apple iPhone XR (Red, 128 GB)</a>
+                                  </h6>
+                                  <ul class="list-inline list-inline-dotted mb-3 mb-lg-2">
+                                      <li class="list-inline-item"><a href="#" class="text-muted" data-abc="true">Phones</a></li>
+                                      <li class="list-inline-item"><a href="#" class="text-muted" data-abc="true">Mobiles</a></li>
+                                  </ul>
+                                  <p class="mb-3">128 GB ROM | 15.49 cm (6.1 inch) Display 12MP Rear Camera | 7MP Front Camera A12 Bionic Chip Processor | Gorilla Glass with high quality display </p>
+                                  <ul class="list-inline list-inline-dotted mb-0">
+                                      <li class="list-inline-item">All items from <a href="#" data-abc="true">Mobile point</a></li>
+                                      <li class="list-inline-item">Add to <a href="#" data-abc="true">wishlist</a></li>
+                                  </ul>
+                              </div>
+                              <div class="mt-3 mt-lg-0 ml-lg-3 text-center">
+                                  <h3 class="mb-0 font-weight-semibold">$459.99</h3>
+                                  <div>
+                                      <i class="fa fa-star"></i>
+                                      <i class="fa fa-star"></i>
+                                      <i class="fa fa-star"></i>
+                                      <i class="fa fa-star"></i>
+                                  </div>
+                                  <div class="text-muted">1985 reviews</div>
+                                  <button type="button" class="btn btn-warning mt-4 text-white"><i class="icon-cart-add mr-2"></i> Add to cart</button>
+                              </div>
+                          </div>
+                      </div>
+
+
+
+                      <div class="card card-body mt-3">
+                          <div class="media align-items-center align-items-lg-start text-center text-lg-left flex-column flex-lg-row">
+                              <div class="mr-2 mb-3 mb-lg-0">
+                                      <img src="https://i.imgur.com/Aj0L4Wa.jpg" width="150" height="150" alt="">
+                              </div>
+                              <div class="media-body">
+                                  <h6 class="media-title font-weight-semibold">
+                                      <a href="#" data-abc="true">Apple iPhone XS Max (Gold, 64 GB)</a>
+                                  </h6>
+                                  <ul class="list-inline list-inline-dotted mb-3 mb-lg-2">
+                                      <li class="list-inline-item"><a href="#" class="text-muted" data-abc="true">Phones</a></li>
+                                      <li class="list-inline-item"><a href="#" class="text-muted" data-abc="true">Mobiles</a></li>
+                                  </ul>
+                                  <p class="mb-3">256 GB ROM | 15.49 cm (6.1 inch) Display 12MP Rear Camera | 15MP Front Camera A12 Bionic Chip Processor | Gorilla Glass with high quality display </p>
+                                  <ul class="list-inline list-inline-dotted mb-0">
+                                      <li class="list-inline-item">All items from <a href="#" data-abc="true">Mobile junction</a></li>
+                                      <li class="list-inline-item">Add to <a href="#" data-abc="true">wishlist</a></li>
+                                  </ul>
+                              </div>
+                              <div class="mt-3 mt-lg-0 ml-lg-3 text-center">
+                                  <h3 class="mb-0 font-weight-semibold">$612.99</h3>
+                                  <div>
+                                      <i class="fa fa-star"></i>
+                                      <i class="fa fa-star"></i>
+                                      <i class="fa fa-star"></i>
+                                      <i class="fa fa-star"></i>
+                                      <i class="fa fa-star"></i>
+                                  </div>
+                                  <div class="text-muted">2349 reviews</div>
+                                  <button type="button" class="btn btn-warning mt-4 text-white"><i class="icon-cart-add mr-2"></i> Add to cart</button>
+                              </div>
+                          </div>
+                      </div> 
+                          
+        </div>
+      </div>
+  </div>
+
+</section>
