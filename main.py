@@ -117,4 +117,4 @@ def add_img():
     return render_template("edit_car.html", html_form=edit_form, html_car_to_edit=car_to_edit)
 
 if __name__ == "__main__":
-    app.run(debug=True, host="localhost", port="5000")
+    app.run(debug=True, host="localhost", port="5000", use_reloader=False)

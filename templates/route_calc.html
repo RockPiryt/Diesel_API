@@ -1,0 +1,55 @@
+<section id="route" class="route">
+    <div class="container">
+
+      <div class="section-title">
+        <span>Route costs</span>
+        <h2>Route costs</h2>
+        <p>Calculate your route costart</p>
+      </div>
+
+
+      <div class="row" data-aos="fade-up">
+        <div class="col-lg-6 ">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d2438852.607702315!2d17.11938291679802!3d53.34876944989758!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x46fd731c14d4fa6f%3A0x9bb9fbf163b7be8d!2zR2RhxYRzaw!3m2!1d54.3520252!2d18.6466384!4m5!1s0x471ecc669a869f01%3A0x72f0be2a88ead3fc!2sWarszawa!3m2!1d52.2296756!2d21.012228699999998!5e0!3m2!1spl!2spl!4v1687236119638!5m2!1spl!2spl" width="100%" height="384" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+
+        <div class="col-lg-6">
+          <form action="#" method="post" role="form" class="php-email-form">
+            <div class="row">
+              <div class="col-md-6 form-group">
+                <input type="text" name="start" class="form-control" id="start" placeholder="Your start" required>
+              </div>
+              <div class="col-md-6 form-group mt-3 mt-md-0">
+                <input type="text" class="form-control" name="end" id="end" placeholder="Your end" required>
+              </div>
+            </div>
+            <div class="form-group mt-3">
+              <input type="text" class="form-control" name="distance" id="distance" placeholder="Distance" required>
+            </div>
+            <div class="form-group mt-3">
+              <input type="text" class="form-control" name="diesel_price" id="diesel_price" placeholder="Diesel price" required>
+            </div>
+            <label for="cars">Choose a car:</label>
+            <div class="form-group mt-3">
+            <select id="cars" name="cars">
+              <option value="volvo">Volvo</option>
+              <option value="saab">Saab</option>
+              <option value="fiat">Fiat</option>
+              <option value="audi">Audi</option>
+            </select>
+            </div>
+            <div class="form-group mt-3">
+              <input type="text" class="form-control" name="route_costs" id="route_costs" placeholder="Route costs" required>
+            </div>
+            <div class="text-center"><button type="submit">Calculate</button></div>
+            <div class="form-group mt-3">
+              <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
+            </div>
+            <div class="text-center"><button type="submit">Send calculation</button></div>
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
