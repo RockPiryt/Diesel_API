@@ -1,11 +1,9 @@
 from flask import Flask, render_template, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 import requests
-from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
-from wtforms.validators import DataRequired
 from flask import request
 from flask_bootstrap import Bootstrap5
+from forms import EditForm
 
 
 
@@ -77,19 +75,8 @@ for one_car in all_cars:
 # db.session.add(new_car)
 # db.session.commit()
 
-##------------------------------Flaskforms
-class EditForm(FlaskForm):
-    img_source = StringField(label="Please paste url to car image", validators=[DataRequired()])
-    submit = SubmitField(label="Update")
-
-
 
 #-----------------------------------URLS
-# @app.route("/")
-# def home():
-#     '''Show all cars in database'''
-#     all_cars = Car.query.all()
-#     return render_template("index.html", html_all_cars=all_cars)
 
 @app.route("/")
 def home():
