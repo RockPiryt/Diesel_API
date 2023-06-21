@@ -67,9 +67,21 @@ def home():
         user_end = route_form.end.data
         user_distance = route_form.distance.data
         diesel_price = route_form.price.data
-        user_car = route_form.car.data
-        user_email=route_form.email.data
-        return render_template("route_info.html", html_user_distance=user_distance, html_user_car=user_car)
+        user_car_consumption = float(route_form.car.data)
+        user_email = route_form.email.data
+        
+        # Calculate travel cost
+        # Divide distance by 100km
+        diesel_consumption = user_distance/100 * user_car_consumption
+        cost = diesel_consumption * diesel_price
+
+        # cost= distance/100 = 400/100 =4
+        # 4*consumption= 4*11 = 44L
+        # 44L*diesel_price = 44*6.2 = 272,8zl
+        return render_template("index.html", html_form=route_form, html_cost=cost)
+    
+
+        # return render_template("route_info.html", html_user_distance=user_distance, html_user_car_consumption=user_car_consumption)
 
     # if route_form.validate_on_submit():
     #     return render_template("success.html")

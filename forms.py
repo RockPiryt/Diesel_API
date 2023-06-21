@@ -13,16 +13,16 @@ class RouteForm(FlaskForm):
     distance = FloatField(label=" ", validators=[DataRequired()])
     price = FloatField(label=" ", validators=[DataRequired()])
     car = SelectField(label="Choose car from database", choices=[
-        ("Chevrolet_[Cruze]", "Chevrolet Cruze"),
-        ("BMW_[328d]", "BMW 328d"),
-        ("Jaguar_[XF]", "Jaguar XF"),
-        ("Chevrolet_[Cruze Hatchback]", "Chevrolet Cruze Hatchback"),
-        ("BMW_[328d xDrive Sports Wagon]", "BMW 328d xDrive Sports Wagon"),
-        ("Jaguar_[XE AWD]", "Jaguar XE AWD"),
-        ("GMC_[Terrain FWD]", "GMC Terrain FWD"),
-        ("GMC_[Terrain AWD]", "GMC Terrain AWD"),
-        ("Mazda_[CX-5 2WD]", "Mazda CX-5 2WD"),
-        ("Mazda_[CX-5 4WD]", "Mazda CX-5 4WD"),
+        ("10.3", "Chevrolet Cruze"),
+        ("10.6", "BMW 328d"),
+        ("10.9", "Jaguar XF"),
+        ("10.9", "Chevrolet Cruze Hatchback"),
+        ("11.2", "BMW 328d xDrive Sports Wagon"),
+        ("11.2", "Jaguar XE AWD"),
+        ("11.9", "GMC Terrain FWD"),
+        ("11.9", "GMC Terrain AWD"),
+        ("13.2", "Mazda CX-5 2WD"),
+        ("13.6", "Mazda CX-5 4WD"),
         ])
     email = StringField(label="")
     calculate = SubmitField(label="Calculate")
