@@ -13,7 +13,8 @@ OPENDATA_VEHICLE_URL = f"https://public.opendatasoft.com//api/records/1.0/search
 
 ##-----------------------------------Create app
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0s112'
+# app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0s112'
+app.secret_key = "MyPassword12345"
 bootstrap = Bootstrap5(app)
 
 ##-----------------------------------Create DB
@@ -48,17 +49,31 @@ for one_car in all_cars:
 
 #-----------------------------------URLS
 
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 def home():
-    '''Show all cars in database'''
+    '''Main page'''
 
+    #Show all cars in database
     python_all_cars = Car.query.all()
     #Slice to show 10 cars
-    list_all_cars=python_all_cars[0:9]
+    list_all_cars=python_all_cars[0:10]
 
     #Create route form
     route_form = RouteForm()
 
+    #Get information from form
+    if route_form.validate_on_submit():
+        user_start = route_form.start.data
+        user_end = route_form.end.data
+        user_distance = route_form.distance.data
+        diesel_price = route_form.price.data
+        user_car = route_form.car.data
+        user_email=route_form.email.data
+        return render_template("route_info.html", html_user_distance=user_distance, html_user_car=user_car)
+
+    # if route_form.validate_on_submit():
+    #     return render_template("success.html")
+    
     return render_template("index.html", html_all_cars=list_all_cars, html_form=route_form)
 
 
@@ -83,7 +98,7 @@ def add_img():
 def calculation():
     '''Calculate distance'''
     pass
-    #  if route_form.validate_on_submit():
+    # if route_form.validate_on_submit():
     #     user_name = form_python.name.data
     #     user_email = form_python.email.data
     #     user_subject = form_python.subject.data

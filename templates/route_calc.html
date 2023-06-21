@@ -14,7 +14,7 @@
         </div>
 
         <div class="col-lg-6">
-          <form action="{{ url_for('calculation')}}" method="post" role="form" class="php-email-form" novalidate>
+          <form action="{{ url_for('home')}}" method="post" role="form" class="email-form" novalidate>
             {{ html_form.csrf_token }}
             <div class="row">
               <div class="col-md-6 form-group">
@@ -34,30 +34,21 @@
               {{ html_form.price.label }}
               {{ html_form.price(class_="form-control", placeholder="Diesel price") }}
             </div>
-            <label for="cars">Choose a car:</label>
             <div class="form-group mt-3">
-            <select id="cars" name="cars">
-              <option value="volvo">Volvo</option>
-              <option value="saab">Saab</option>
-              <option value="fiat">Fiat</option>
-              <option value="audi">Audi</option>
-            </select>
-            </div>
-            <div class="form-group mt-3">
-              {{ html_form.costs.label }}
-              {{ html_form.costs(class_="form-control", placeholder="Costs") }}
-            </div>
-            <div class="text-center mt-2">
-              {{ html_form.calculate(class_="btn btn-secondary btn-sm") }}
+            {{ html_form.car.label }}
+            {{ html_form.car(class_="form-control") }}
             </div>
             <div class="form-group mt-3">
               {{ html_form.email.label }}
               {{ html_form.email(class_="form-control", placeholder="Your email") }}
             </div>
-            <div class="text-center mt-2">
-              {{ html_form.send(class_="btn btn-danger btn-sm") }}
+            <div class="form-group mt-3">
+              <p>Costs: </p>
             </div>
-
+            <div class="text-center mt-2">
+              {{ html_form.calculate(class_="btn btn-secondary btn-sm") }}
+            </div>
+            
           </form>
         </div>
 
