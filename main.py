@@ -1,9 +1,9 @@
 from flask import Flask, render_template, redirect, url_for
-from flask_sqlalchemy import SQLAlchemy
+from models import db, Car
 import requests
 from flask import request
 from flask_bootstrap import Bootstrap5
-from forms import EditForm
+from forms import EditForm, RouteForm
 
 
 
@@ -19,24 +19,9 @@ bootstrap = Bootstrap5(app)
 ##-----------------------------------Create DB
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///top_cars.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db=SQLAlchemy(app)
+db.init_app(app)
 app.app_context().push()
 
-class Car(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    make = db.Column(db.String, nullable=False)
-    model = db.Column(db.String, nullable=False)
-    year = db.Column(db.Integer, nullable=True)
-    engine = db.Column(db.Float, nullable=True)
-    fuel = db.Column(db.String, nullable=False)
-    transmission = db.Column(db.String, nullable=True)
-    size = db.Column(db.String, nullable=True)
-    consumption = db.Column(db.Float, nullable=False)
-    img_url = db.Column(db.String, nullable=True)
-
-
-    def __repr__(self):
-        return f'<Vehicle {self.model}>'
 
 db.create_all()
 #--------------------------------Add values to database
@@ -59,21 +44,6 @@ for one_car in all_cars:
     db.session.add(new_car)
     db.session.commit()
 
-# # -----------------------------First information to db to check db
-# new_car = Car(
-#     make = "Volkswagen",
-#     model = "Golf",
-#     year = 2019,
-#     engine = 1.4,
-#     transmission = "Manual 6-spd",
-#     fuel = "Regular",
-#     size = "Compact Cars",
-#     consumption = 10.300,
-#     img_url="https://images.unsplash.com/photo-1614152204322-e6ab7f040c1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-# )
-
-# db.session.add(new_car)
-# db.session.commit()
 
 
 #-----------------------------------URLS
@@ -85,9 +55,14 @@ def home():
     python_all_cars = Car.query.all()
     #Slice to show 10 cars
     list_all_cars=python_all_cars[0:9]
-    return render_template("index.html", html_all_cars=list_all_cars)
 
-@app.route("/add-img", methods=["GET", "POST"])
+    #Create route form
+    route_form = RouteForm()
+
+    return render_template("index.html", html_all_cars=list_all_cars, html_form=route_form)
+
+
+@app.route("/edit", methods=["GET", "POST"])
 def add_img():
     '''Add image source'''
 
@@ -102,6 +77,31 @@ def add_img():
         db.session.commit()
         return redirect(url_for('home'))
     return render_template("edit_car.html", html_form=edit_form, html_car_to_edit=car_to_edit)
+
+
+@app.route("/route-calc", methods=["GET", "POST"])
+def calculation():
+    '''Calculate distance'''
+    pass
+    #  if route_form.validate_on_submit():
+    #     user_name = form_python.name.data
+    #     user_email = form_python.email.data
+    #     user_subject = form_python.subject.data
+    #     user_message = form_python.message.data
+
+    #     user_info = {
+    #         "name": user_name,
+    #         "email": user_email,
+    #         "subject": user_subject,
+    #         "message": user_message,
+    #     }
+
+    #     send_email(user_name, user_email, user_subject, user_message)
+
+
+
+    # return render_template("index.html")
+
 
 if __name__ == "__main__":
     app.run(debug=True, host="localhost", port="5000", use_reloader=False)
