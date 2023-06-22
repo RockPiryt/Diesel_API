@@ -17,7 +17,7 @@ class Car(db.Model):
 
 
     def __repr__(self):
-        return f'<Vehicle {self.model}>'
+        return f'{self.make} [{self.model}] {self.consumption} L'
     
 
 # # -----------------------------First information to db to check db

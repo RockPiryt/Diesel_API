@@ -1,6 +1,8 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, FloatField, SelectField
 from wtforms.validators import DataRequired
+# from wtforms_sqlalchemy.fields import QuerySelectField
+
 
 ##------------------------------Flaskforms
 class EditForm(FlaskForm):
@@ -24,6 +26,7 @@ class RouteForm(FlaskForm):
         ("13.2", "Mazda CX-5 2WD"),
         ("13.6", "Mazda CX-5 4WD"),
         ])
+    # car_data = QuerySelectField(label="Choose car from database", query_factory=car_choices)
     calculate = SubmitField(label="Calculate")
 
 class SendForm(FlaskForm):

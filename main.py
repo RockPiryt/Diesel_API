@@ -3,11 +3,16 @@ from models import db, Car
 import requests
 from flask import request
 from flask_bootstrap import Bootstrap5
-from forms import EditForm, RouteForm, SendForm
+from forms import EditForm, SendForm
 import os
 from dotenv import load_dotenv
 import smtplib
 from email.message import EmailMessage
+
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField, FloatField, SelectField
+from wtforms.validators import DataRequired
+from wtforms_sqlalchemy.fields import QuerySelectField
 
 
 # Get user info to send email
@@ -52,6 +57,30 @@ for one_car in all_cars:
     )
     db.session.add(new_car)
     db.session.commit()
+
+
+def car_choices():
+    return Car.query.all()
+
+class RouteForm(FlaskForm):
+    start = StringField(label=" ")
+    end = StringField(label=" ")
+    distance = FloatField(label=" ", validators=[DataRequired()])
+    price = FloatField(label=" ", validators=[DataRequired()])
+    car = SelectField(label="Choose car from database", choices=[
+        ("10.3", "Chevrolet Cruze"),
+        ("10.6", "BMW 328d"),
+        ("10.9", "Jaguar XF"),
+        ("10.9", "Chevrolet Cruze Hatchback"),
+        ("11.2", "BMW 328d xDrive Sports Wagon"),
+        ("11.2", "Jaguar XE AWD"),
+        ("11.9", "GMC Terrain FWD"),
+        ("11.9", "GMC Terrain AWD"),
+        ("13.2", "Mazda CX-5 2WD"),
+        ("13.6", "Mazda CX-5 4WD"),
+        ])
+    car_data = QuerySelectField(label="Choose car from database", query_factory=car_choices)
+    calculate = SubmitField(label="Calculate")
 
 
 # -----------------------------------URLS
