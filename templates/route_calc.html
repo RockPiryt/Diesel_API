@@ -1,4 +1,4 @@
-<section id="route" class="route">
+<section id="travel_cost" class="travel_cost">
     <div class="container">
 
       <div class="section-title">
@@ -36,13 +36,6 @@
             <div class="form-group mt-3">
             {{ html_form.car.label }}
             {{ html_form.car(class_="form-control") }}
-            </div>
-            <div class="form-group mt-3">
-              {{ html_form.email.label }}
-              {{ html_form.email(class_="form-control", placeholder="Your email") }}
-            </div>
-            <div class="form-group mt-3">
-              <p>Costs: {{ html_cost }} zł</p>
             </div>
             <div class="text-center mt-2">
               {{ html_form.calculate(class_="btn btn-secondary btn-sm") }}

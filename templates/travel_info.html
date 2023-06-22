@@ -1,4 +1,5 @@
 {% include "header.html" %}
+{% include "navbar.html" %}
 
 <section id="contact" class="contact">
     <div class="container">
@@ -53,7 +54,7 @@
                 <p>Diesel consumption: {{ html_diesel_consumption | round(1) }}L</p>
               </div>
               <div class="form-group mt-3">
-                <p>Travel cost: {{ html_cost }}</p>
+                <p>Travel cost: {{ html_cost | round(1) }} zł</p>
               </div>
               <div class="col-md-6 form-group mt-3 mt-md-0">
                 <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>

@@ -68,15 +68,23 @@ def home():
         user_distance = route_form.distance.data
         diesel_price = route_form.price.data
         user_car_consumption = float(route_form.car.data)
-        user_email = route_form.email.data
         
         # Calculate travel cost
         diesel_consumption = user_distance/100 * user_car_consumption
         cost = diesel_consumption * diesel_price
 
-        # return render_template("index.html", html_form=route_form, html_cost=cost)
-        return render_template("travel_info.html", html_form=route_form, html_cost=cost, html_user_car_consumption=user_car_consumption, html_user_start=user_start, html_user_end=user_end, html_user_distance=user_distance, html_diesel_consumption=diesel_consumption)
-    
+        kwargs={
+            "html_form":route_form,
+            "html_user_start": user_start,
+            "html_user_end": user_end,
+            "html_user_distance": user_distance,
+            "html_user_car_consumption": user_car_consumption,
+            "html_diesel_consumption": diesel_consumption,
+            "html_cost": cost,
+        }
+
+        # travel_info(kwargs)
+        return render_template("travel_info.html", **kwargs)
     return render_template("index.html", html_all_cars=list_all_cars, html_form=route_form)
 
 
@@ -97,28 +105,11 @@ def add_img():
     return render_template("edit_car.html", html_form=edit_form, html_car_to_edit=car_to_edit)
 
 
-@app.route("/route-calc", methods=["GET", "POST"])
-def calculation():
-    '''Calculate distance'''
-    pass
-    # if route_form.validate_on_submit():
-    #     user_name = form_python.name.data
-    #     user_email = form_python.email.data
-    #     user_subject = form_python.subject.data
-    #     user_message = form_python.message.data
+# @app.route("/travel", methods=["GET", "POST"])
+# def travel_info():
+#     '''Calculate distance'''
 
-    #     user_info = {
-    #         "name": user_name,
-    #         "email": user_email,
-    #         "subject": user_subject,
-    #         "message": user_message,
-    #     }
-
-    #     send_email(user_name, user_email, user_subject, user_message)
-
-
-
-    # return render_template("index.html")
+#     return render_template("travel_info.html", **kwargs)
 
 
 if __name__ == "__main__":

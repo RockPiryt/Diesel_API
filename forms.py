@@ -24,5 +24,8 @@ class RouteForm(FlaskForm):
         ("13.2", "Mazda CX-5 2WD"),
         ("13.6", "Mazda CX-5 4WD"),
         ])
-    email = StringField(label="")
     calculate = SubmitField(label="Calculate")
+
+class SendForm(FlaskForm):
+    email = StringField(label="")
+    send = SubmitField(label="Send")
