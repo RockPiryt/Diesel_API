@@ -14,7 +14,7 @@
           <div class="info-box mb-4">
             <i class="bx bx-map"></i>
             <h3>Distance</h3>
-            <p>{{ html_user_distance }} km</p>
+            <p>{{ html_new_distance }}</p>
           </div>
         </div>
 
@@ -22,7 +22,7 @@
           <div class="info-box  mb-4">
             <i class="fa-solid fa-flag-checkered"></i>
             <h3>Start point</h3>
-            <p>{{ html_user_start }}</p>
+            <p>{{ html_new_start }}</p>
           </div>
         </div>
 
@@ -30,7 +30,7 @@
           <div class="info-box  mb-4">
             <i class="bx bx-phone-call"></i>
             <h3>End point</h3>
-            <p>{{ html_user_end }}</p>
+            <p>{{ html_new_end }}</p>
           </div>
         </div>
 
@@ -48,19 +48,24 @@
                 <p>Car: Chevrolet Cruze</p>
               </div>
               <div class="form-group mt-3p">
-                <p>Car consumption per 100km: {{ html_user_car_consumption | round(1) }} L</p>
+                <p>Car consumption per 100km: {{ html_new_consumption }} L</p>
               </div>
               <div class="form-group mt-3p">
-                <p>Diesel consumption: {{ html_diesel_consumption | round(1) }}L</p>
+                <p>Diesel consumption: {{ html_new_diesel_consumption | round(1) }}L</p>
               </div>
               <div class="form-group mt-3">
-                <p>Travel cost: {{ html_cost | round(1) }} zł</p>
+                <p>Travel cost: {{ html_new_cost | round(1) }} zł</p>
               </div>
               <div class="col-md-6 form-group mt-3 mt-md-0">
-                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                {{ html_send_form.email.label }}
+                {{ html_send_form.email(class_="form-control", placeholder="Your email") }}
               </div>
             </div>
-            <div class="text-center"><button type="submit">Send email</button></div>
+            <div class="text-center">
+              <a href="#">
+                {{ html_send_form.send(class_="btn btn-secondary btn-sm") }}
+              </a>
+            </div>
           </form>
         </div>
 

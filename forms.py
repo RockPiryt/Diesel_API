@@ -28,4 +28,4 @@ class RouteForm(FlaskForm):
 
 class SendForm(FlaskForm):
     email = StringField(label="")
-    send = SubmitField(label="Send")
+    send = SubmitField(label="Send email")
