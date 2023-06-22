@@ -4,8 +4,16 @@ import requests
 from flask import request
 from flask_bootstrap import Bootstrap5
 from forms import EditForm, RouteForm
+import os
+from dotenv import load_dotenv
+import smtplib 
+from email.message import EmailMessage
 
 
+#Get user info to send email
+load_dotenv("C:/Users/Popuś/Desktop/Python/environment_variables/.env")
+my_email= os.getenv("MY_EMAIL")
+api_key_gmail = os.getenv("APP_PASSWORD_GMAIL")
 
 #dataset_id="all-vehicles-model"
 OPENDATA_VEHICLE_URL = f"https://public.opendatasoft.com//api/records/1.0/search/?dataset=all-vehicles-model&q=&rows=20&sort=-barrels08&facet=make&facet=model&facet=cylinders&facet=drive&facet=eng_dscr&facet=fueltype&facet=fueltype1&facet=mpgdata&facet=phevblended&facet=trany&facet=vclass&facet=year&refine.fueltype1=Diesel&refine.year=2018"
@@ -71,7 +79,7 @@ def home():
         
         # Calculate travel cost
         diesel_consumption = user_distance/100 * user_car_consumption
-        cost = diesel_consumption * diesel_price
+        travel_cost = diesel_consumption * diesel_price
 
         kwargs={
             "html_form":route_form,
@@ -80,12 +88,31 @@ def home():
             "html_user_distance": user_distance,
             "html_user_car_consumption": user_car_consumption,
             "html_diesel_consumption": diesel_consumption,
-            "html_cost": cost,
+            "html_cost": travel_cost,
         }
 
-        # travel_info(kwargs)
+        send_email(user_distance,travel_cost)
         return render_template("travel_info.html", **kwargs)
     return render_template("index.html", html_all_cars=list_all_cars, html_form=route_form)
+
+def send_email(distance,cost):
+    #Create email
+    user_info = f"""
+    Here are information from user: \n
+    Distance: {distance}, \n
+    Travel cost: {cost}, \n
+    """
+    msg = EmailMessage()
+    msg.set_content(user_info)
+    msg["Subject"] = "Travel cost"
+    msg["From"] = my_email
+    msg["To"] = my_email
+
+    #Send email with form's information
+    with smtplib.SMTP("smtp.gmail.com") as connection:
+        connection.starttls()
+        connection.login(user=my_email, password=api_key_gmail)
+        connection.send_message(msg)
 
 
 @app.route("/edit", methods=["GET", "POST"])
@@ -103,13 +130,6 @@ def add_img():
         db.session.commit()
         return redirect(url_for('home'))
     return render_template("edit_car.html", html_form=edit_form, html_car_to_edit=car_to_edit)
-
-
-# @app.route("/travel", methods=["GET", "POST"])
-# def travel_info():
-#     '''Calculate distance'''
-
-#     return render_template("travel_info.html", **kwargs)
 
 
 if __name__ == "__main__":
