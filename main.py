@@ -14,6 +14,8 @@ from wtforms import StringField, SubmitField, FloatField, SelectField
 from wtforms.validators import DataRequired
 from wtforms_sqlalchemy.fields import QuerySelectField
 
+from stock_trading import Article, title_articles, description_articles, url_articles, COMPANY_NAME, arrow, diff_percent
+
 
 # Get user info to send email
 load_dotenv("C:/Users/Popuś/Desktop/Python/environment_variables/.env")
@@ -55,8 +57,8 @@ for one_car in all_cars:
         size=one_car["fields"]["vclass"],
         consumption=one_car["fields"]["barrels08"],
     )
-    db.session.add(new_car)
-    db.session.commit()
+    # db.session.add(new_car)
+    # db.session.commit()
 
 
 def car_choices():
@@ -89,12 +91,29 @@ class RouteForm(FlaskForm):
 def home():
     '''Main page'''
 
-    # Show all cars in database
-    python_all_cars = Car.query.all()
-    # Slice to show 10 cars
-    list_all_cars = python_all_cars[0:10]
+    # Show 10 cars in database
+    python_all_cars = Car.query.all()[0:10]
     # Create route form
     route_form = RouteForm()
+
+    # Stock trading information
+    first_article = Article(
+        title=title_articles[0],
+        description=description_articles[0],
+        url=url_articles[0]
+        )
+    
+    second_article = Article(
+        title=title_articles[1],
+        description=description_articles[1],
+        url=url_articles[1]
+        )
+    
+    third_article = Article(
+        title=title_articles[2],
+        description=description_articles[2],
+        url=url_articles[2]
+        )
 
     # Get information from form
     if route_form.validate_on_submit():
@@ -116,7 +135,15 @@ def home():
                                 travel_cost=user_cost,
                                 ))
 
-    return render_template("index.html", html_all_cars=list_all_cars, html_form=route_form)
+    return render_template("index.html", 
+                           html_all_cars=python_all_cars, 
+                           html_form=route_form, 
+                           html_first_article=first_article,html_second_article=second_article,
+                           html_third_article=third_article,
+                           html_company_name=COMPANY_NAME,
+                           html_arrow=arrow,
+                           html_diff_percent=diff_percent,
+                           )
 
 
 def send_email(distance, cost):
