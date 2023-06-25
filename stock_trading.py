@@ -19,12 +19,14 @@ NEWS_ENDPOINT = "https://newsapi.org/v2/everything"
 
 # Get yesterday's closing stock price.
 stock_params = {
-    "function": "TIME_SERIES_DAILY",
+    "function": "TIME_SERIES_DAILY_ADJUSTED",
     "symbol": STOCK_NAME,
     "apikey": STOCK_API_KEY,
 }
 
 response = requests.get(STOCK_ENDPOINT, params=stock_params)
+# data = response.json()
+# print(data)
 data = response.json()["Time Series (Daily)"]
 data_list = [value for (key, value) in data.items()]
 yesterday_data = data_list[0]
@@ -95,11 +97,11 @@ second_article = Article(
     description=description_articles[1],
     url=url_articles[1]
 )
-print(second_article.title)
+# print(second_article.title)
 
 third_article = Article(
     title=title_articles[2],
     description=description_articles[2],
     url=url_articles[2]
 )
-print(third_article.title)
+# print(third_article.title)

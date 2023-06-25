@@ -23,8 +23,9 @@ my_email = os.getenv("MY_EMAIL")
 api_key_gmail = os.getenv("APP_PASSWORD_GMAIL")
 
 # dataset_id="all-vehicles-model"
-OPENDATA_VEHICLE_URL = f"https://public.opendatasoft.com//api/records/1.0/search/?dataset=all-vehicles-model&q=&rows=20&sort=-barrels08&facet=make&facet=model&facet=cylinders&facet=drive&facet=eng_dscr&facet=fueltype&facet=fueltype1&facet=mpgdata&facet=phevblended&facet=trany&facet=vclass&facet=year&refine.fueltype1=Diesel&refine.year=2018"
+OPENDATA_VEHICLE_URL = f"https://public.opendatasoft.com/api/records/1.0/search/?dataset=all-vehicles-model&q=&rows=200&sort=-barrels08&facet=make&facet=model&facet=cylinders&facet=drive&facet=eng_dscr&facet=fueltype&facet=fueltype1&facet=mpgdata&facet=phevblended&facet=trany&facet=vclass&facet=year&refine.fueltype=Diesel&exclude.year=1984&exclude.year=1985"
 
+# basedir = os.path.abspath(os.path.dirname(__file__))
 
 # -----------------------------------Create app
 app = Flask(__name__)
@@ -33,6 +34,7 @@ app.secret_key = "MyPassword12345"
 bootstrap = Bootstrap5(app)
 
 # -----------------------------------Create DB
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'top_cars2.db')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///top_cars.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
@@ -41,7 +43,7 @@ app.app_context().push()
 
 db.create_all()
 # --------------------------------Add values to database
-# Make API request - 20 rows - iteration by 2 (to eliminate duplicate model with different transmission)
+# Make API request - 60 rows - iteration by 2 (to eliminate duplicate model with different transmission)
 response = requests.get(OPENDATA_VEHICLE_URL)
 all_cars = response.json()["records"][::2]
 
@@ -92,7 +94,10 @@ def home():
     '''Main page'''
 
     # Show 10 cars in database
-    python_all_cars = Car.query.all()[0:10]
+    num_page=request.args.get('num_page', 1, type=int)
+    # url_page=page_num
+    all_cars_pagination = Car.query.paginate(page=num_page, per_page=10)
+    # python_all_cars = Car.query.all()[0:10]
     # Create route form
     route_form = RouteForm()
 
@@ -136,7 +141,7 @@ def home():
                                 ))
 
     return render_template("index.html", 
-                           html_all_cars=python_all_cars, 
+                           html_all_cars_pagination=all_cars_pagination,
                            html_form=route_form, 
                            html_first_article=first_article,html_second_article=second_article,
                            html_third_article=third_article,
@@ -144,7 +149,6 @@ def home():
                            html_arrow=arrow,
                            html_diff_percent=diff_percent,
                            )
-
 
 def send_email(distance, cost):
     # Create email

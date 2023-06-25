@@ -7,7 +7,7 @@
     <div class="container d-flex justify-content-center mt-50 mb-50">
       <div class="row">
         <div class="col-md-12">
-            {% for car in html_all_cars %}
+            {% for car in html_all_cars_pagination %}
                 <div class="card card-body mt-3">
                     <div class="media align-items-center align-items-lg-start text-center text-lg-left flex-column flex-lg-row">
                         <div class="mr-2 mb-3 mb-lg-0">
@@ -43,6 +43,19 @@
             {% endfor %}
         </div>
       </div>
+    </div>
+    <div class="container d-flex justify-content-center mt-100 mb-50">
+        <div class="row mt-3">
+            <div class="col-md-12">
+                {% for page in html_all_cars_pagination.iter_pages() %}
+                    {% if page %}
+                        <a href="{{ url_for('home', num_page=page)}}">{{ page }}</a>
+                    {% else %}
+                        None Page
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
     </div>
 
 </section>
