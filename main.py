@@ -5,6 +5,7 @@ from flask import request
 from flask_bootstrap import Bootstrap5
 from forms import EditForm, SendForm
 import os
+from os.path import join, dirname
 from dotenv import load_dotenv
 import smtplib
 from email.message import EmailMessage
@@ -18,7 +19,9 @@ from stock_trading import Article, title_articles, description_articles, url_art
 
 
 # Get user info to send email
-load_dotenv("C:/Users/Popuś/Desktop/Python/environment_variables/.env")
+# load_dotenv("C:/Users/Popuś/Desktop/Python/environment_variables/.env")
+dotenv_path = join(dirname(__file__), '.env')
+load_dotenv(dotenv_path)
 my_email = os.getenv("MY_EMAIL")
 api_key_gmail = os.getenv("APP_PASSWORD_GMAIL")
 
