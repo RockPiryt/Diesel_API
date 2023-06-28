@@ -1,13 +1,13 @@
+#index forms.py
+#--------------------------------Imports
+from myproject.models import Car
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, FloatField, SelectField
 from wtforms.validators import DataRequired
-# from wtforms_sqlalchemy.fields import QuerySelectField
+from wtforms_sqlalchemy.fields import QuerySelectField
 
-
-##------------------------------Flaskforms
-class EditForm(FlaskForm):
-    img_source = StringField(label="Please paste url to car image", validators=[DataRequired()])
-    submit = SubmitField(label="Update")
+def car_choices():
+    return Car.query.all()
 
 class RouteForm(FlaskForm):
     start = StringField(label=" ")
@@ -26,9 +26,5 @@ class RouteForm(FlaskForm):
         ("13.2", "Mazda CX-5 2WD"),
         ("13.6", "Mazda CX-5 4WD"),
         ])
-    # car_data = QuerySelectField(label="Choose car from database", query_factory=car_choices)
+    car_data = QuerySelectField(label="Choose car from database", query_factory=car_choices)
     calculate = SubmitField(label="Calculate")
-
-class SendForm(FlaskForm):
-    email = StringField(label="")
-    send = SubmitField(label="Send email")

@@ -36,7 +36,7 @@
                                 <i class="fa fa-star"></i>
                             </div>
                             <div class="text-muted">Fuel type: {{car.fuel}}</div>
-                            <a href="{{url_for('add_img', car_id=car.id)}}" class="button">Add img</a>
+                            <a href="{{url_for('edit-car.add_img', car_id=car.id)}}" class="button">Add img</a>
                         </div>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
             <div class="col-md-12">
                 {% for page in html_all_cars_pagination.iter_pages() %}
                     {% if page %}
-                        <a href="{{ url_for('home', num_page=page)}}">{{ page }}</a>
+                        <a href="{{ url_for('single-page.home', num_page=page)}}">{{ page }}</a>
                     {% else %}
                         None Page
                     {% endif %}

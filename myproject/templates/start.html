@@ -1,0 +1,18 @@
+{% include "header.html" %}
+  <!-- ======= Top Bar ======= -->
+  {% include "top_bar.html" %}
+
+  <!-- ======= Header ======= -->
+  {% include "navbar.html"%}
+  <!-- End Header -->
+
+<section id="hero" class="d-flex align-items-center">
+    <div class="container position-relative" data-aos="fade-up" data-aos-delay="500">
+      <h1>Welcome to Diesel ON</h1>
+      <h2>Here you get information about diesel costs.</h2>
+      <a href="{{ url_for('single-page.home')}}" class="btn-get-started scrollto">Get Started</a>
+    </div>
+  </section>
+
+  <!-- ======= Footer ======= -->
+  {% include "footer.html" %}
