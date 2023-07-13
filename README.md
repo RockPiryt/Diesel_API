@@ -42,19 +42,19 @@ List the ready features here:
 ## Previews
 
 ### Home Page
-![Home Page Preview](https://github.com/RockPiryt/Diesel_API/blob/main/prev_home_page.jpg?raw=true)
+![Home Page Preview](myproject/static/img/previews/prev_home_page.jpg)
 
 ### Section 1 - Stock trading information using API
-![Section 1 Preview - Stock trading information using API](https://github.com/RockPiryt/Diesel_API/blob/main/prev_section_1_stock_trading.jpg?raw=true)
+![Section 1 Preview - Stock trading information using API](myproject/static/img/previews/prev_section_1_stock_trading.jpg)
 
 ### Section 2 - Gas station
-![Section 2 Preview - Gas station](https://github.com/RockPiryt/Diesel_API/blob/main/prev_section_2_gas_station.jpg?raw=true)
+![Section 2 Preview - Gas station](myproject/static/img/previews/prev_section_2_gas_station.jpg)
 
 ### Section 3 - Car database with CRUD operations
-![Section 3 Preview - Car database with CRUD operations](https://github.com/RockPiryt/Diesel_API/blob/main/prev_section_3_cars_db.jpg?raw=true)
+![Section 3 Preview - Car database with CRUD operations](myproject/static/img/previews/prev_section_3_cars_db.jpg)
 
 ### Section 4 - Travel cost calculator with cars from database
-![Section 4 Preview - Travel cost calculator with cars from database](https://github.com/RockPiryt/Diesel_API/blob/main/prev_section_4_travel_cost_calculator.jpg?raw=true)
+![Section 4 Preview - Travel cost calculator with cars from database](myproject/static/img/previews/prev_section_4_travel_cost_calculator.jpg)
 
 ## Setup
 
