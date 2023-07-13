@@ -47,13 +47,7 @@ OPENDATA_VEHICLE_URL = f"https://public.opendatasoft.com/api/records/1.0/search/
 def home():
     '''Main page'''
 
-    # Show 10 cars in database
-    num_page=request.args.get('num_page', 1, type=int)
-    all_cars_pagination = Car.query.paginate(page=num_page, per_page=10)
-    
-    # Create route form
-    route_form = RouteForm()
-
+    ####################Stock trading information Section############################
     # Stock trading information
     first_article = Article(
         title=title_articles[0],
@@ -72,7 +66,14 @@ def home():
         description=description_articles[2],
         url=url_articles[2]
         )
-
+    ####################Top Car CRUD database Section###############################
+    # Show 10 cars in database
+    num_page=request.args.get('num_page', 1, type=int)
+    all_cars_pagination = Car.query.paginate(page=num_page, per_page=10)
+    
+    ####################Travel Calculator Section###############################
+    # Create route form
+    route_form = RouteForm()
     # Get information from form
     if route_form.validate_on_submit():
         user_start = route_form.start.data
