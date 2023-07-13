@@ -1,0 +1,12 @@
+{% extends 'new_base.html' %}
+{% from 'bootstrap5/form.html' import render_form %}
+
+
+{% block title %}Edit Car{% endblock %}
+
+{% block content %}
+<div class="content">
+  <h1 class="heading">Add new car</h1>
+    {{ render_form(html_form) }}
+  </div>
+{% endblock %}

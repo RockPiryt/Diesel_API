@@ -13,16 +13,20 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0s112'
 bootstrap = Bootstrap5(app)
 
-# -----------------------------------Create DB
-basedir = os.path.abspath(os.path.dirname(__file__))
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+os.path.join(basedir, 'data.sqlite')
+# -----------------------------------Create DB SQLite
+# basedir = os.path.abspath(os.path.dirname(__file__))
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+os.path.join(basedir, 'data.sqlite')
+
+# -----------------------------------Create DB PostgreSQL
+# app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:wxPdY4zkM0vdOaZmDzlQWqPNm8Lu@localhost/TestDB"
+# app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://truskawka:truskawka@localhost/TruskawkaDB"
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://ManagerDieselON:dieselon@localhost/NewDBcar"
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 app.app_context().push()
 
 # Migrate(app,db)
-
 
 # -----------------------------------Register Blueprints
 from myproject.single_page.views import single_page_blueprint

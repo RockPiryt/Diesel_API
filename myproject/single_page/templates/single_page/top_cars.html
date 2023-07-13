@@ -36,7 +36,6 @@
                                 <i class="fa fa-star"></i>
                             </div>
                             <div class="text-muted">Fuel type: {{car.fuel}}</div>
-                            <a href="{{url_for('edit-car.add_img', car_id=car.id)}}" class="button">Add img</a>
                         </div>
                     </div>
                 </div>
@@ -55,7 +54,9 @@
                     {% endif %}
                 {% endfor %}
             </div>
+            <a href="{{url_for('edit-car.add_new_car')}}" class="btn btn-danger btn-block btn-large mt-2">Add new car</a>
         </div>
     </div>
+    
 
 </section>

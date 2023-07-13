@@ -14,8 +14,8 @@ import requests
 #--------------------------------Create Blueprint
 single_page_blueprint = Blueprint('single-page', __name__, template_folder='templates/single_page')
 
-# --------------------------------Create table Car from models.py
-db.create_all()
+# # --------------------------------Create table Car from models.py
+# db.create_all()
 
 # --------------------------------Add values to database
 # dataset_id="all-vehicles-model"
@@ -23,24 +23,24 @@ OPENDATA_VEHICLE_URL = f"https://public.opendatasoft.com/api/records/1.0/search/
 
 # Make API request - 60 rows - 
 # iteration by 2 (to eliminate duplicate model with different transmission)
-response = requests.get(OPENDATA_VEHICLE_URL)
-all_cars = response.json()["records"][::2]
+# response = requests.get(OPENDATA_VEHICLE_URL)
+# all_cars = response.json()["records"][::2]
 
-# Get specific information
-for one_car in all_cars:
-    new_car = Car(
-        make=one_car["fields"]["make"],
-        model=one_car["fields"]["model"],
-        year=one_car["fields"]["year"],
-        engine=one_car["fields"]["displ"],
-        fuel=one_car["fields"]["fueltype1"],
-        transmission=one_car["fields"]["trany"],
-        size=one_car["fields"]["vclass"],
-        consumption=one_car["fields"]["barrels08"],
-    )
-    #Add information to database
-    # db.session.add(new_car)
-    # db.session.commit()
+# # Get specific information
+# for one_car in all_cars:
+#     new_car = Car(
+#         make=one_car["fields"]["make"],
+#         model=one_car["fields"]["model"],
+#         year=one_car["fields"]["year"],
+#         engine=one_car["fields"]["displ"],
+#         fuel=one_car["fields"]["fueltype1"],
+#         transmission=one_car["fields"]["trany"],
+#         size=one_car["fields"]["vclass"],
+#         consumption=one_car["fields"]["barrels08"],
+#     )
+#     #Add information to database
+#     db.session.add(new_car)
+#     db.session.commit()
 
 #--------------------------------Create views
 @single_page_blueprint.route("/", methods=["GET", "POST"])

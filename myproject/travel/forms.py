@@ -5,7 +5,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, FloatField, SelectField
 from wtforms.validators import DataRequired
 from wtforms_sqlalchemy.fields import QuerySelectField
-from models import Car
+from myproject.models import Car
 
 
 #---------------------------Route Form with Queryfield
