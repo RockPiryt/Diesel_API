@@ -1,7 +1,7 @@
 # Diesel_API
 
 This web application provides a wide range of information about diesel
-and costs associated with it. User can follow current diesel price trends, he can compare prices at gas station of different companies. Moreover user can calculate a monthly cost of driving a diesel car. In addition, he can compare cars with the lowest fuel consumption.
+and costs associated with it. User can follow current diesel price trends. Moreover user can calculate a cost of driving a diesel car. In addition, he can compare cars with the lowest fuel consumption.
 
 ## Table of Contents
 
@@ -17,10 +17,11 @@ and costs associated with it. User can follow current diesel price trends, he ca
 
 ## General Information
 
-The main reason why I created this web application was that I wanted to know about a margin of our national diesel supplier. Therefore I use API request to get information about actual USD/PL' exchange rate.
-Moreover I can calculate my monthly journeys, when I use a diesel car.
+I created this web application to show travel cost using diesel cars. Therefore I use API request to get information about changes in diesel price.
 
-This application was created using Flask and SQLlite database.
+Moreover User can calculate travel cost. User fill in route form and get information about travel cost between 2 cities in Poland.
+
+This application was created using Flask and PostgreSQL database.
 
 ## Technologies Used
 
@@ -35,9 +36,10 @@ This application was created using Flask and SQLlite database.
 
 List the ready features here:
 
-- On home Page User can follow current diesel price trends
-- User can register account and login
-- When user log in, he gets an access to adding car journeys and calculate cost of these journeys.
+- In Stock trading section User can follow current information about diesel from stock trading (use API),
+- In top cars section there are showed cars from database, (PostgreSQL database)
+- User can add new car, edit image car in database or delete car from database,
+- In Travel cost section User can add information about travel in route form, choose car from database and make calculation to get information about cost. 
 
 ## Previews
 
@@ -76,17 +78,19 @@ Project is: _in progress_
 
 Room for improvement:
 
-- Login and registering user with authentication
-- Registered users can calculate and save travel cost in database
-- Webscraping google maps to get distance between 2 cities in Poland
+- Login and registering user with authentication,
+- Registered users can calculate and save travel cost in database,
+- Webscraping Google Maps to get distance between 2 cities in Poland - this distance will be used in route form.
+- Prepare application to deploy on AWS.
 
 To do:
 
 - add login/register routes
 - create model to keep information about travel
 - use Selenium to get distance beetween 2 cities in Poland
+- change structure to deploy structure
 
-## Contac
+## Contact
 
 - Created by [@RockPiryt Github](https://github.com/RockPiryt)
 - My Resume [@RockPiryt Resume](https://rockpiryt.github.io/Personal_Site/)
